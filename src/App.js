@@ -11,6 +11,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
+  
+  const lStorage = JSON.parse(localStorage.getItem("login"));
+  let userId;
+  if (lStorage) {
+    userId = lStorage.user.userId;
+  } else {
+    userId = null;
+  }
+
+
   return (
     <BrowserRouter>
       <Routes>
