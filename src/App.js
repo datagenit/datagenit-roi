@@ -6,12 +6,12 @@ import './assets/css/nucleo-svg.css';
 import Index from "./Component/dashboard/Index";
 import AddEvent from "./Component/dashboard/AddEvent";
 import ListEvent from "./Component/dashboard/ListEvent";
-import Login from "./Login/Login";
+import Login from "./Component/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
-  
+
   const lStorage = JSON.parse(localStorage.getItem("login"));
   let userId;
   if (lStorage) {
@@ -28,7 +28,7 @@ function App() {
         <Route path="/dashboard" element={<Index />} />
         <Route path="/dashboard/add-event" element={<AddEvent />} />
         <Route path="/dashboard/list-event" element={<ListEvent />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
