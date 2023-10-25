@@ -4,18 +4,18 @@ import SignupLogo from '../assets/img/logo3.png';
 import { URL } from '../Component/common/Url'
 
 class Login extends Component {
-
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: '',
-      showpassword: false,
+      username: "",
+      password: "",
+      isfacebooklogin: false,
       show: false,
       loginMessage: "",
-      bgColor: "alert alert-danger"
-    }
+      bgColor: "",
+    };
     this.keyPressed = this.keyPressed.bind(this);
+    this.login = this.login.bind(this);
   }
 
   keyPressed(event) {
@@ -24,47 +24,53 @@ class Login extends Component {
     }
   }
 
-  passwordHandlar = () => {
-    this.setState({ ...this.state.showpassword, showpassword: !this.state.showpassword })
-  }
+
 
   login() {
-
-    this.setState({ loginMessage: false })
-    document.querySelector('body').scrollTo(0, 0);
-
-    if (this.state.username && this.state.password) {
-
-      fetch(`${URL}login.php?username=${this.state.username}&password=${this.state.password}`).then((response) => {
-
-        response.json().then((result) => {
-          if (result.success === true) {
-            if (result.user.name === 'client') {
-              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
-              sessionStorage.setItem("user", JSON.stringify(result));
-              setTimeout(function () { window.location = "/dashboard"; }, 1000);
-            } else if (result.user.name === 'Admin') {
-              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
-              sessionStorage.setItem("admin", JSON.stringify(result));
-              setTimeout(function () { window.location = "/admin"; }, 1000);
-            } else if (result.user.name === 'Manager') {
-              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
-              sessionStorage.setItem("manager", JSON.stringify(result));
-              setTimeout(function () { window.location = "/admin"; }, 1000);
-            }
-            console.log(result);
-
-          } else {
-            this.setState({ show: true, loginMessage: result.message, bgColor: 'alert alert-danger' });
+    this.setState({ loginMessage: false });
+    var url = document.location.href;
+    fetch("https://authkey.io/api/login.php", {
+      method: "post",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(this.state),
+    }).then((result) => {
+      result.json().then((resp) => {
+        if (resp.success === true) {
+          this.setState({
+            show: true,
+            loginMessage: "Success",
+            bgColor: "alert alert-success",
+          });
+          if (resp.user.isAdmin === "client") {
+            resp["url"] = url;
+            localStorage.setItem("login", JSON.stringify(resp));
+            localStorage.setItem("admin", JSON.stringify({ success: false }));
+            setTimeout(function () {
+              window.location = "/dashboard";
+            }, 1000);
+          } else if (resp.user.isAdmin === "admin") {
+            localStorage.setItem("admin", JSON.stringify(resp));
+            setTimeout(function () {
+              window.location = "/admin";
+            }, 1000);
+          } else if (resp.user.isAdmin === "emp") {
+            localStorage.setItem("emp", JSON.stringify(resp));
+            setTimeout(function () {
+              window.location = "/admin";
+            }, 1000);
           }
-        })
-      })
-
-    } else {
-      this.setState({ show: true, loginMessage: 'Please Enter User ID & Password', bgColor: 'alert alert-danger' })
-    }
-
-  }
+        } else {
+          this.setState({
+            show: true,
+            loginMessage: resp.message,
+            bgColor: "alert alert-danger",
+          });
+        }
+      });
+    });
+  };
 
   render() {
 
