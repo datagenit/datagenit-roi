@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SignupBg from '../assets/img/image-sign-up.jpg';
 import SignupLogo from '../assets/img/logo3.png';
-
+import { URL } from '../Component/common/Url'
 
 class Login extends Component {
 
@@ -30,35 +30,40 @@ class Login extends Component {
 
   login() {
 
-    if (this.state.username && this.state.password) {
-      fetch(`${URL}login.php?username=${this.state.username}&password=${this.state.password}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Network response was not ok, status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((result) => {
-          console.log('Login Result:', result);
+    this.setState({ loginMessage: false })
+    document.querySelector('body').scrollTo(0, 0);
 
-          if (result.success === true && result.user.isAdmin === 'admin') {
-            this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' });
-            sessionStorage.setItem("user", JSON.stringify(result));
-            console.log('Redirecting to dashboard...');
-            setTimeout(() => {
-              window.location = "/dashboard";
-            }, 1000);
+    if (this.state.username && this.state.password) {
+
+      fetch(`${URL}login.php?username=${this.state.username}&password=${this.state.password}`).then((response) => {
+
+        response.json().then((result) => {
+          if (result.success === true) {
+            if (result.user.name === 'client') {
+              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
+              sessionStorage.setItem("user", JSON.stringify(result));
+              setTimeout(function () { window.location = "/dashboard"; }, 1000);
+            } else if (result.user.name === 'Admin') {
+              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
+              sessionStorage.setItem("admin", JSON.stringify(result));
+              setTimeout(function () { window.location = "/admin"; }, 1000);
+            } else if (result.user.name === 'Manager') {
+              this.setState({ show: true, loginMessage: 'Success', bgColor: 'alert alert-success' })
+              sessionStorage.setItem("manager", JSON.stringify(result));
+              setTimeout(function () { window.location = "/admin"; }, 1000);
+            }
+            console.log(result);
+
           } else {
             this.setState({ show: true, loginMessage: result.message, bgColor: 'alert alert-danger' });
           }
         })
-        .catch((error) => {
-          console.error('Login Error:', error);
-          this.setState({ show: true, loginMessage: 'An error occurred while logging in.', bgColor: 'alert alert-danger' });
-        });
+      })
+
     } else {
-      this.setState({ show: true, loginMessage: 'Please Enter User ID & Password', bgColor: 'alert alert-danger' });
+      this.setState({ show: true, loginMessage: 'Please Enter User ID & Password', bgColor: 'alert alert-danger' })
     }
+
   }
 
   render() {
