@@ -7,7 +7,9 @@ import Index from "./Component/dashboard/Index";
 import AddEvent from "./Component/dashboard/AddEvent";
 import ListEvent from "./Component/dashboard/ListEvent";
 import Login from "./Component/Login";
+import Logout from './Component/Logout';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Admin from './Component/admin/Admin';
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route path="/dashboard/add-event" element={<AddEvent />} />
         <Route path="/dashboard/list-event" element={<ListEvent />} />
         <Route path="/" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
