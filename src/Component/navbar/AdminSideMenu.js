@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Logoimg from '../../assets/img/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAlignJustify, faUser, faUsers, faAssistiveListeningSystems, faChartBar, faCreditCard, faBroadcastTower, faAtom, faBan, faPlus, faTicketAlt, faPhotoVideo, faInbox, faBlog, faStore } from '@fortawesome/free-solid-svg-icons'
+import { faAlignJustify, faUser, faUsers, faAssistiveListeningSystems, faChartBar, faCreditCard, faBroadcastTower, faAtom, faBan, faPlus, faTicketAlt, faPhotoVideo, faInbox, faBlog, faStarOfLife } from '@fortawesome/free-solid-svg-icons'
 
-const DashboardSideMenu = () => {
+const AdminSideMenu = () => {
   const [pName, setPName] = useState('');
   const [empMenu, setempMenu] = useState(true);
 
@@ -40,12 +40,8 @@ const DashboardSideMenu = () => {
           <span class="font-weight-bold text-lg"><img src={Logoimg} /></span>
         </a>
       </div>
-
-
       <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
-
-
           <li>
             <NavLink className="sidebar-link" isActive={checkActive} to="/admin">
               <FontAwesomeIcon icon={faAlignJustify} />  <span className="align-middle">  Dashboard</span>
@@ -80,6 +76,22 @@ const DashboardSideMenu = () => {
 
 
 
+          <li>
+            <NavLink className="sidebar-link" isActive={checkActive} to="/admin">
+              <FontAwesomeIcon icon={faAlignJustify} />  <span className="align-middle">Dashboard</span>
+            </NavLink>
+          </li>
+
+
+          <li className={pName === '/dashboard/list-event' ? 'sidebar-item active' : 'sidebar-item'}>
+            <NavLink className="sidebar-link" isActive={checkActive} to="/dashboard/list-event">
+              <FontAwesomeIcon icon={faAssistiveListeningSystems} />  <span className="align-middle">User Event</span>
+            </NavLink>
+          </li>
+
+
+
+
           {/* 
 
           <li className={pName === '/admin/user-management' || pName === '/admin/all-user-management' ? 'sidebar-item active' : 'sidebar-item'}>
@@ -110,7 +122,7 @@ const DashboardSideMenu = () => {
             <>
               <li className={pName === '/admin' ? 'sidebar-item active' : 'sidebar-item'}>
                 <NavLink className="sidebar-link" isActive={checkActive} to="/admin">
-                  <FontAwesomeIcon icon={faUsers} />  <span className="align-middle">Employee Management</span>
+                  <FontAwesomeIcon icon={faUsers} />  <span className="align-middle">User Management</span>
                 </NavLink>
               </li>
 
@@ -132,4 +144,4 @@ const DashboardSideMenu = () => {
   );
 };
 
-export default DashboardSideMenu;
+export default AdminSideMenu;

@@ -29,7 +29,7 @@ class Login extends Component {
   login() {
     this.setState({ loginMessage: false });
     var url = document.location.href;
-    fetch("https://authkey.io/api/login.php", {
+    fetch(`${URL}/login.php`, {
       method: "post",
       headers: {
         "content-Type": "application/json",
@@ -44,9 +44,7 @@ class Login extends Component {
             bgColor: "alert alert-success",
           });
           if (resp.user.isAdmin === "client") {
-            resp["url"] = url;
-            localStorage.setItem("login", JSON.stringify(resp));
-            localStorage.setItem("admin", JSON.stringify({ success: false }));
+            localStorage.setItem("client", JSON.stringify(resp));
             setTimeout(function () {
               window.location = "/dashboard";
             }, 1000);

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 
-const DashboardTopMenu = () => {
+const AdminTopMenu = () => {
 
   const lStorage = JSON.parse(localStorage.getItem("admin")) || JSON.parse(localStorage.getItem("emp")) || JSON.parse(localStorage.getItem("client"));
   const Id = lStorage.user.userId;
@@ -70,4 +70,4 @@ const DashboardTopMenu = () => {
   );
 };
 
-export default DashboardTopMenu;
+export default AdminTopMenu;

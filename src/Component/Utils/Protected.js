@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 
-const AdminProtected = ({ component: Cmp, ...rest }) => (
+const Protected = ({ component: Cmp, ...rest }) => (
     <Route
         {...rest}
         render={(props) =>
-            sessionStorage.getItem("admin") || sessionStorage.getItem("manager") ? (
+            sessionStorage.getItem("user") ? (
                 <Cmp {...props} />
             ) :
                 <Navigate to='/logout' />
@@ -13,4 +13,4 @@ const AdminProtected = ({ component: Cmp, ...rest }) => (
     />
 )
 
-export default AdminProtected;
+export default Protected;

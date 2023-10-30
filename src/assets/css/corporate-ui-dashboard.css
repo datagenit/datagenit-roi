@@ -27591,4 +27591,8 @@ button.swiper-pagination-bullet {
   margin: 5px 5px;
 }
 
+.card .card-header {
+  background: #eee;
+}
+
 /*# sourceMappingURL=dashboard-free.css.map */
