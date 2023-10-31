@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Logoimg from '../../assets/img/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAlignJustify, faUser, faUsers, faAssistiveListeningSystems, faChartBar, faCreditCard, faBroadcastTower, faAtom, faBan, faPlus, faTicketAlt, faPhotoVideo, faInbox, faBlog, faStore } from '@fortawesome/free-solid-svg-icons'
+import { faTable, faCalendar, faAdd, faList, faStore } from '@fortawesome/free-solid-svg-icons'
 
 const DashboardSideMenu = () => {
   const [pName, setPName] = useState('');
@@ -48,7 +48,7 @@ const DashboardSideMenu = () => {
 
           <li>
             <NavLink className="sidebar-link" isActive={checkActive} to="/admin">
-              <FontAwesomeIcon icon={faAlignJustify} />  <span className="align-middle">  Dashboard</span>
+              <FontAwesomeIcon icon={faTable} />  <span className="align-middle">  Dashboard</span>
             </NavLink>
           </li>
 
@@ -58,70 +58,48 @@ const DashboardSideMenu = () => {
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
               </div>
-              <span class="nav-link-text ms-1">Event</span>
+              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Event</span>
             </a>
             <div class="collapse" id="navexample">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <a class="nav-links text-white opacity-9" href="add-event.php">
-
-                    <span class="sidenav-normal">&nbsp;Add Events</span>
-                  </a>
+                  <Link className="nav-links text-white" to="/admin/add-event">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Event</span>
+                  </Link>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-links text-white opacity-9" href="list-event.php">
-                    <span class="sidenav-mini-icon"></span>
-                    <span class="sidenav-normal">&nbsp;&nbsp;List Event</span>
-                  </a>
+                  <Link className="nav-links text-white" to="/admin/list-event">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Event</span>
+                  </Link>
+
                 </li>
               </ul>
             </div>
           </li>
 
 
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#navexample1" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample1" role="button" aria-expanded="false">
+              <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
-          {/* 
-
-          <li className={pName === '/admin/user-management' || pName === '/admin/all-user-management' ? 'sidebar-item active' : 'sidebar-item'}>
-            <a href="#userManagement" data-target="#userManagement" data-toggle="collapse" className="sidebar-link collapsed">
-              <FontAwesomeIcon icon={faUser} /> <span className="align-middle">User Management  </span>
+              </div>
+              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faStore} /> Store</span>
             </a>
-            <ul id="userManagement" className={pName === '/admin/user-management' || pName === '/admin/all-user-management' ? 'sidebar-dropdown list-unstyled collapse show' : 'sidebar-dropdown list-unstyled collapse'} data-parent="#sidebar">
-
-              <li className={pName === '/admin/user-management' ? 'sidebar-item active' : 'sidebar-item'}><Link className="sidebar-link" to="/admin/user-management"> Users List </Link></li>
-
-              <li className={pName === '/admin/all-user-management' ? 'sidebar-item active' : 'sidebar-item'}><Link className="sidebar-link" to="/admin/all-user-management">All Users list</Link></li>
-
-            </ul>
+            <div class="collapse" id="navexample1">
+              <ul class="nav border-start ms-4">
+                <li class="nav-item active">
+                  <Link className="nav-links text-white" to="/admin/add-store">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Store</span>
+                  </Link>
+                </li>
+                <li class="nav-item active">
+                  <Link className="nav-links text-white" to="/admin/list-event">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Store</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </li>
-*/}
-
-
-
-
-          {/* 					
-					<li  className={pName==='/admin/traffic-management'?'sidebar-item active':'sidebar-item '}>
-						<NavLink className="sidebar-link " isActive={checkActive} to="/admin/traffic-management">
-						<FontAwesomeIcon icon={faGlobe} />  <span className="align-middle">Traffic Management</span>
-			            </NavLink>
-					</li> */}
-
-          {empMenu ?
-            <>
-              <li className={pName === '/admin' ? 'sidebar-item active' : 'sidebar-item'}>
-                <NavLink className="sidebar-link" isActive={checkActive} to="/admin">
-                  <FontAwesomeIcon icon={faUsers} />  <span className="align-middle">Employee Management</span>
-                </NavLink>
-              </li>
-
-
-            </>
-
-            :
-
-            null
-          }
-
 
 
         </ul>

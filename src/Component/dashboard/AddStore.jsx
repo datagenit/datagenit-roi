@@ -7,7 +7,7 @@ import CubeImg from '../../assets/img/3d-cube.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faStore } from '@fortawesome/free-solid-svg-icons'
 
-class AddEvent extends Component {
+class AddStore extends Component {
 
   constructor() {
 
@@ -175,4 +175,4 @@ class AddEvent extends Component {
 }
 
 
-export default AddEvent
+export default AddStore

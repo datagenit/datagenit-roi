@@ -62,9 +62,9 @@ const ListEvent = () => {
                   <table class="table align-items-center mb-0">
                     <thead class="bg-gray-100">
                       <tr>
-                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">S.No.</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">S.No.</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Event Name</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Case Id</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Coupon Id</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Deliver</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Failed</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Date</th>
