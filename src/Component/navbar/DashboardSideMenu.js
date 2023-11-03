@@ -58,17 +58,17 @@ const DashboardSideMenu = () => {
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
               </div>
-              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Event</span>
+              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Sale Event</span>
             </a>
             <div class="collapse" id="navexample">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/add-event">
+                  <Link className="nav-links text-white" to="/dashboard/add-event">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Event</span>
                   </Link>
                 </li>
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/list-event">
+                  <Link className="nav-links text-white" to="/dashboard/list-event">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Event</span>
                   </Link>
 
@@ -88,12 +88,12 @@ const DashboardSideMenu = () => {
             <div class="collapse" id="navexample1">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/add-store">
+                  <Link className="nav-links text-white" to="/dashboard/add-store">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Store</span>
                   </Link>
                 </li>
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/list-event">
+                  <Link className="nav-links text-white" to="/dashboard/list-store">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Store</span>
                   </Link>
                 </li>

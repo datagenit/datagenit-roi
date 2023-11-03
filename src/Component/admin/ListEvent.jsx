@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
-import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
+import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
+import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
 import Footer from '../../Component/footer/Footer';
 import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
@@ -11,10 +11,10 @@ const ListEvent = () => {
   return (
     <div>
 
-      <DashboardSideMenu />
+      <AdminSideMenu />
       <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-        <DashboardTopMenu />
+        <AdminTopMenu />
 
         <div class="container-fluid py-4 px-5">
           <div class="row">

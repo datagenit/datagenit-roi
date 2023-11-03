@@ -20894,11 +20894,19 @@ fieldset:disabled .btn {
 
 .card {
   box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #dde0e5 !important;
 }
 
 .card .card-header {
   padding: 1rem;
+
 }
+
+.card.card-plain {
+  border: 0px #fff solid !important;
+}
+
+
 
 .card .card-header-mx-2 {
   margin-left: 0.75rem !important;
@@ -20913,6 +20921,10 @@ fieldset:disabled .btn {
   padding: 2rem;
 }
 
+.card.card-plain .card-body {
+  padding: 1rem !important;
+}
+
 .card.card-plain {
   background-color: transparent;
   box-shadow: none;
@@ -20921,6 +20933,11 @@ fieldset:disabled .btn {
 .card .card-footer {
   padding: 1rem;
   background-color: transparent;
+}
+
+.alert {
+  font-size: 14px !important;
+  padding: 10px;
 }
 
 .author {
@@ -27592,7 +27609,7 @@ button.swiper-pagination-bullet {
 }
 
 .card .card-header {
-  background: #eee;
+  background: #f9fafb;
 }
 
 .nav-links {
@@ -27632,4 +27649,25 @@ button.swiper-pagination-bullet {
   border-bottom-left-radius: 0px !important;
 }
 
-/*# sourceMappingURL=dashboard-free.css.map */
+.btn-close {
+  --bs-btn-close-color: #000;
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  --bs-btn-close-opacity: 0.5;
+  --bs-btn-close-hover-opacity: 0.75;
+  --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --bs-btn-close-focus-opacity: 1;
+  --bs-btn-close-disabled-opacity: 0.25;
+  --bs-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: .25em .25em;
+  color: #565c64;
+  background: transparent #565c64 center/1em auto no-repeat;
+  border: 0;
+  border-radius: .375rem;
+}
+
+.text-danger {
+  font-size: 13px;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Logoimg from '../../assets/img/logo.png';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAlignJustify, faTable, faUsers, faCalendar, faAdd, faList, faStore } from '@fortawesome/free-solid-svg-icons'
+import { faTable, faCalendar, faAdd, faList, faStore, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const AdminSideMenu = () => {
   const [pName, setPName] = useState('');
@@ -51,32 +51,29 @@ const AdminSideMenu = () => {
               <FontAwesomeIcon icon={faTable} />  <span className="align-middle">  Dashboard</span>
             </NavLink>
           </li>
-
-
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#navexample" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample" role="button" aria-expanded="false">
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
               </div>
-              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Event</span>
+              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faUser} /> Customer</span>
             </a>
             <div class="collapse" id="navexample">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/add-event">
-                    <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Event</span>
+                  <Link className="nav-links text-white" to="/admin/add-customer">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Customer</span>
                   </Link>
                 </li>
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/list-event">
-                    <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Event</span>
+                  <Link className="nav-links text-white" to="/admin/list-customer">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Customer</span>
                   </Link>
 
                 </li>
               </ul>
             </div>
           </li>
-
 
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#navexample1" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample1" role="button" aria-expanded="false">
@@ -88,12 +85,7 @@ const AdminSideMenu = () => {
             <div class="collapse" id="navexample1">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/add-store">
-                    <span class="sidenav-normal"><FontAwesomeIcon icon={faAdd} /> Add Store</span>
-                  </Link>
-                </li>
-                <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/list-event">
+                  <Link className="nav-links text-white" to="/admin/list-store">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Store</span>
                   </Link>
                 </li>
@@ -101,6 +93,23 @@ const AdminSideMenu = () => {
             </div>
           </li>
 
+          <li class="nav-item">
+            <a data-bs-toggle="collapse" href="#navexample" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample" role="button" aria-expanded="false">
+              <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+
+              </div>
+              <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Event</span>
+            </a>
+            <div class="collapse" id="navexample">
+              <ul class="nav border-start ms-4">
+                <li class="nav-item active">
+                  <Link className="nav-links text-white" to="/admin/list-event">
+                    <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Event</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </li>
 
         </ul>
       </div>

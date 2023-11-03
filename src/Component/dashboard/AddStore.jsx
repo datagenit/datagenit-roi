@@ -11,7 +11,7 @@ class AddStore extends Component {
 
   constructor() {
 
-    const lStorage = JSON.parse(localStorage.getItem("admin"));
+    const lStorage = JSON.parse(localStorage.getItem("client"));
     const userId = lStorage.user.userId;
     const userToken = lStorage.token;
 
@@ -50,10 +50,7 @@ class AddStore extends Component {
         }
       })
     })
-
-
   }
-
 
   render() {
     return (
@@ -61,7 +58,6 @@ class AddStore extends Component {
 
         <DashboardSideMenu />
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
           <DashboardTopMenu />
 
           <div class="container-fluid py-4 px-5">
@@ -88,7 +84,6 @@ class AddStore extends Component {
                       <div>
                         <h6 class="font-weight-semibold text-lg mb-0">Store Form</h6>
                       </div>
-
                     </div>
                   </div>
                   <div class="card-body">

@@ -1,20 +1,21 @@
 import React from 'react';
-import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
-import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
+import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
+import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
 import Footer from '../../Component/footer/Footer';
 import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const ListEvent = () => {
+const ListCustomer = () => {
+
+
   return (
     <div>
+      <AdminSideMenu />
 
-      <DashboardSideMenu />
       <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <AdminTopMenu />
 
-        <DashboardTopMenu />
+
 
         <div class="container-fluid py-4 px-5">
           <div class="row">
@@ -52,7 +53,7 @@ const ListEvent = () => {
                     <div class="ms-auto d-flex">
                       <div class="input-group input-group-sm ms-auto me-2">
                         <span class="input-group-text text-body">
-                          <FontAwesomeIcon icon={faSearch} />
+
                         </span>
                         <input type="text" class="form-control form-control-sm" placeholder="Search" />
                       </div>
@@ -61,11 +62,12 @@ const ListEvent = () => {
                 </div>
 
                 <div class="table-responsive p-0">
+
                   <table class="table align-items-center mb-0">
                     <thead class="bg-gray-100">
                       <tr>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">S.No.</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Event Name</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Store Name</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Coupon Id</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Deliver</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Failed</th>
@@ -76,7 +78,7 @@ const ListEvent = () => {
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Diwali Coupon1</p></td>
+                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
@@ -92,7 +94,7 @@ const ListEvent = () => {
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Diwali Coupon</p></td>
+                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
@@ -108,7 +110,7 @@ const ListEvent = () => {
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Diwali Coupon</p></td>
+                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
                         <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
@@ -147,9 +149,6 @@ const ListEvent = () => {
             </div>
           </div>
 
-
-
-
           <Footer />
         </div >
 
@@ -159,4 +158,4 @@ const ListEvent = () => {
   )
 }
 
-export default ListEvent
+export default ListCustomer

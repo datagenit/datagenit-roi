@@ -7,9 +7,6 @@ import { userid, token, name, type } from '../common/UserAuth';
 const Index = () => {
   return (
     <div>
-
-
-
       <AdminSideMenu />
       <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
@@ -22,7 +19,6 @@ const Index = () => {
                   <h3 class="font-weight-bold mb-0">Dashboard</h3>
                   <p class="mb-0"></p>
                 </div>
-
               </div>
             </div>
           </div>

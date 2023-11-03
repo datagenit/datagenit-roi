@@ -5,8 +5,8 @@ import Footer from '../../Component/footer/Footer';
 import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DatePicker from "react-datepicker";
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import DatePicker from "react-datepicker";
 import Axios from '../../axios/Axios';
 import { dateFormate } from '../Utils/Utils';
 
@@ -14,7 +14,7 @@ import { dateFormate } from '../Utils/Utils';
 class AddEvent extends Component {
 
   constructor() {
-    const lStorage = JSON.parse(localStorage.getItem("admin")) || JSON.parse(localStorage.getItem("emp"));
+    const lStorage = JSON.parse(localStorage.getItem("client"));
     const userId = lStorage.user.userId;
     const userToken = lStorage.token;
     const adminType = lStorage.user.isAdmin;
@@ -68,9 +68,7 @@ class AddEvent extends Component {
         })
       })
     })
-
   }
-
 
   dateFrom(date) {
     let selectedDate = dateFormate(date);
@@ -86,15 +84,12 @@ class AddEvent extends Component {
     })
   }
 
-
-
   render() {
     return (
       <div>
 
         <DashboardSideMenu />
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-
           <DashboardTopMenu />
 
           <div class="container-fluid py-4 px-5">
@@ -121,11 +116,9 @@ class AddEvent extends Component {
                       <div>
                         <h6 class="font-weight-semibold text-lg mb-0">Event Form</h6>
                       </div>
-
                     </div>
                   </div>
                   <div class="card-body">
-
                     <div class="row">
                       <div class="col-3">
                         <div class="input-group drop-down-icons mb-2 mt-2">
@@ -182,71 +175,59 @@ class AddEvent extends Component {
                       </div>
                     </div>
                   </div>
-
-
-
                   <hr class="my-0" />
                   <div class="table-responsive">
                     <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
                       <div class="dataTable-container">
                         <table class="table table-flush dataTable-table">
                           <thead class="bg-gray-100">
                             <tr>
-                              <th class="text-xs">
-                                <div class="my-auto form-check">
-                                  <input class="form-check-input" type="checkbox" id="customCheck1" />
-                                </div>
-                              </th>
+                              <th class="text-xs">Select</th>
                               <th class="text-xs">Campaign Id</th>
                               <th class="text-xs">Message</th>
-                              <th class="text-xs">Delivery</th>
-                              <th class="text-xs">Failed</th>
+
+                              <th class="text-xs">Total</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <td class="text-xs">
                                 <div class="my-auto form-check">
-                                  <input class="form-check-input" type="checkbox" id="customCheck1" />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
                               <td class="text-sm">1</td>
                               <td class="text-sm">arrival</td>
-                              <td class="text-sm">2000</td>
-                              <td class="text-sm">400</td>
+                              <td class="text-sm">500</td>
                             </tr>
                             <tr>
                               <td class="text-xs">
                                 <div class="my-auto form-check">
-                                  <input class="form-check-input" type="checkbox" id="customCheck1" />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
                               <td class="text-sm">1</td>
                               <td class="text-sm">arrival</td>
-                              <td class="text-sm">2000</td>
-                              <td class="text-sm">400</td>
+                              <td class="text-sm">500</td>
                             </tr>
                             <tr>
                               <td class="text-xs">
                                 <div class="my-auto form-check">
-                                  <input class="form-check-input" type="checkbox" id="customCheck1" />
+                                  <input class="form-check-input" type="checkbox" />
                                 </div>
                               </td>
                               <td class="text-sm">1</td>
                               <td class="text-sm">arrival</td>
-                              <td class="text-sm">2000</td>
-                              <td class="text-sm">400</td>
+                              <td class="text-sm">500</td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-
-
+                      <div class="dataTable-bottom mt-2 mr-2 mb-3 px-4">
+                        <a href="#" class="me-2 mb-0 btn btn-dark"><i class="fas fa-long-arrow-right me-1"></i>Submit</a>
+                      </div>
                     </div>
                   </div>
-
-
                 </div>
               </div>
             </div>
