@@ -21,7 +21,7 @@ function App() {
         <Route path="/admin/list-event" element={<ListEvent />} />
         <Route path="/admin/list-store" element={<ListStore />} />
         <Route path="/admin/add-customer" element={<AddCustomer />} />
-        <Route path="/admin/list-customer" element={<ListCustomer />} />
+        <Route path="/admin/list-customer" component={ListCustomer} />
         <Route path="/" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/admin" element={<Admin />} />

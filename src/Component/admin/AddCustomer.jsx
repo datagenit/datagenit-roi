@@ -7,128 +7,121 @@ import CubeImg from '../../assets/img/3d-cube.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faPhone, faMap, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
-
 class AddCustomer extends Component {
-
-  constructor() {
-
-    const lStorage = JSON.parse(localStorage.getItem("admin"));
-
-    super();
-
-    this.state = {
-      custName: '',
-      custEmail: '',
-      custPhone: '',
-      compName: '',
-      custAddress: '',
-      successMessage: false,
-      errorMessage: '',
-      bgColor: '',
-      customerData: [], // Maintain a list of customer data
-    }
-    // Create a new customer object with the input data
-    const newCustomer = {
-      custName: this.state.custName,
-      custEmail: this.state.custEmail,
-      custPhone: this.state.custPhone,
-      compName: this.state.compName,
-      custAddress: this.state.custAddress,
-    };
-
-
-    // Update the list of customer data
-    this.setState((prevState) => ({
-      customerData: [...prevState.customerData, newCustomer],
-    }));
+  constructor(props) {
+    super(props);
+    // ... (other code)
   }
 
-
-
-  // Define state for validation errors
   state = {
-    // ... (existing state properties),
+    custName: '',
+    custEmail: '',
+    custPhone: '',
+    compName: '',
+    custAddress: '',
+    customerData: [],
     custNameError: '',
     custEmailError: '',
     custPhoneError: '',
     compNameError: '',
     custAddressError: '',
-
   };
 
-
   validateEmail(email) {
-    // Regular expression for a valid email address
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
   }
 
   validatePhone(phone) {
-    // Regular expression for a 10-digit phone number
     const phoneRegex = /^\d{10}$/;
     return phoneRegex.test(phone);
   }
 
-  addNewCustomer() {
-    // Reset validation error messages
-    this.setState({
-      custNameError: '',
-      custEmailError: '',
-      custPhoneError: '',
-      compNameError: '',
-      custAddressError: '',
-    });
+  addNewCustomer = () => {
 
-    // Perform validation
-    let valid = true;
+    this.setState(
+      {
+        custNameError: '',
+        custEmailError: '',
+        custPhoneError: '',
+        compNameError: '',
+        custAddressError: '',
+      },
+      () => {
+        let valid = true;
 
-    if (this.state.custName === '') {
-      this.setState({
-        custNameError: 'Customer Name is required',
-      });
-      valid = false;
-    }
-    if (this.state.compName === '') {
-      this.setState({
-        compNameError: 'Company Name is required',
-      });
-      valid = false;
-    }
+        if (this.state.custName === '') {
+          this.setState({
+            custNameError: 'Customer Name is required',
+          });
+          valid = false;
+        }
 
-    if (this.state.custAddress === '') {
-      this.setState({
-        custAddressError: 'Customer Address is required',
-      });
-      valid = false;
-    }
+        if (this.state.compName === '') {
+          this.setState({
+            compNameError: 'Company Name is required',
+          });
+          valid = false;
+        }
 
-    if (this.state.custEmail === '') {
-      this.setState({
-        custEmailError: 'Email Address is required',
-      });
-      valid = false;
-    }
-    if (!this.validateEmail(this.state.custEmail)) {
-      this.setState({
-        custEmailError: 'Email Address is not correct',
-      });
-      valid = false;
-    }
+        if (this.state.custAddress === '') {
+          this.setState({
+            custAddressError: 'Customer Address is required',
+          });
+          valid = false;
+        }
 
-    if (this.state.custPhone === '') {
-      this.setState({
-        custPhoneError: 'Phone number (10 digits required)',
-      });
-      valid = false;
-    }
-    if (!this.validatePhone(this.state.custPhone)) {
-      this.setState({
-        custPhoneError: 'Phone number (10 digits required) is not correct',
-      });
-      valid = false;
-    }
+        if (this.state.custEmail === '') {
+          this.setState({
+            custEmailError: 'Email Address is required',
+          });
+          valid = false;
+        } else if (!this.validateEmail(this.state.custEmail)) {
+          this.setState({
+            custEmailError: 'Email Address is not correct',
+          });
+          valid = false;
+        }
 
-  }
+        if (this.state.custPhone === '') {
+          this.setState({
+            custPhoneError: 'Phone number (10 digits required)',
+          });
+          valid = false;
+        } else if (!this.validatePhone(this.state.custPhone)) {
+          this.setState({
+            custPhoneError: 'Phone number (10 digits required) is not correct',
+          });
+          valid = false;
+        }
+
+        if (valid) {
+          const newCustomer = {
+            custName: this.state.custName,
+            custEmail: this.state.custEmail,
+            custPhone: this.state.custPhone,
+            compName: this.state.compName,
+            custAddress: this.state.custAddress,
+          };
+
+          this.setState(
+            (prevState) => ({
+              customerData: [...prevState.customerData, newCustomer],
+            }),
+            () => {
+              // Log the updated customerData array
+              console.log('Customer Data:', this.state.customerData);
+
+              // Navigate to the list customer page with the updated data
+              this.props.history.push('/list-customer', {
+                customers: this.state.customerData,
+              });
+            }
+          );
+        }
+      }
+    );
+  };
 
 
   render() {
