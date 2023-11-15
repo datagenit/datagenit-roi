@@ -1,4 +1,5 @@
-import React from 'react';
+// ListCustomer.js
+import React, { useEffect, useState } from 'react';
 import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
 import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
 import Footer from '../../Component/footer/Footer';
@@ -6,7 +7,13 @@ import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
 
 const ListCustomer = () => {
+  const [customerData, setCustomerData] = useState([]);
 
+  useEffect(() => {
+    // Fetch data from localStorage
+    const storedData = JSON.parse(localStorage.getItem('customerData')) || [];
+    setCustomerData(storedData);
+  }, []);
 
   return (
     <div>
@@ -67,22 +74,21 @@ const ListCustomer = () => {
                     <thead class="bg-gray-100">
                       <tr>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">S.No.</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Store Name</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Coupon Id</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Deliver</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Failed</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Date</th>
-                        <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Action</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Customer Name</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Email</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Phone No</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Company Name</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
+                    {customerData.map((customer, index) => (
+                      <tr key={index}>
+                        <td>{customer.custName}</td>
+                        <td>{customer.custEmail}</td>
+                        <td>{customer.custPhone}</td>
+                        <td>{customer.compName}</td>
+                        <td>{customer.custAddress}</td>
                         <td class="text-center align-middle">
                           <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
                             <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
@@ -92,39 +98,7 @@ const ListCustomer = () => {
                           </a>
                         </td>
                       </tr>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
-                        <td class="text-center align-middle">
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
-                            <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                          </a>
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
-                            <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
-                        <td class="text-center align-middle">
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
-                            <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                          </a>
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
-                            <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                      </tr>
-
+                    ))}
                     </tbody>
                   </table>
                 </div>

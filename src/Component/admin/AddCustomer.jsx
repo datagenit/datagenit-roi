@@ -7,10 +7,14 @@ import CubeImg from '../../assets/img/3d-cube.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faPhone, faMap, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
+
 class AddCustomer extends Component {
-  constructor(props) {
-    super(props);
-    // ... (other code)
+  constructor() {
+    super();
+    this.state = {
+      // ... existing state
+      customerData: JSON.parse(localStorage.getItem('customerData')) || [],
+    };
   }
 
   state = {
@@ -103,21 +107,9 @@ class AddCustomer extends Component {
             compName: this.state.compName,
             custAddress: this.state.custAddress,
           };
+          localStorage.setItem('customerData', JSON.stringify([...this.state.customerData, newCustomer]));
 
-          this.setState(
-            (prevState) => ({
-              customerData: [...prevState.customerData, newCustomer],
-            }),
-            () => {
-              // Log the updated customerData array
-              console.log('Customer Data:', this.state.customerData);
-
-              // Navigate to the list customer page with the updated data
-              this.props.history.push('/list-customer', {
-                customers: this.state.customerData,
-              });
-            }
-          );
+       
         }
       }
     );
@@ -148,7 +140,7 @@ class AddCustomer extends Component {
                 {
                   this.state.successMessage ?
                     <div className={this.state.bgColor} role="alert">
-                      {this.state.errorMessage}
+                      {this.state.successMessage}
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     :
