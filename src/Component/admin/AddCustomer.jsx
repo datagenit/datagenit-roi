@@ -12,24 +12,23 @@ class AddCustomer extends Component {
   constructor() {
     super();
     this.state = {
-      // ... existing state
+
+      custName: '',
+      custEmail: '',
+      custPhone: '',
+      compName: '',
+      custAddress: '',
+      custNameError: '',
+      custEmailError: '',
+      custPhoneError: '',
+      compNameError: '',
+      custAddressError: '',
       customerData: JSON.parse(localStorage.getItem('customerData')) || [],
     };
+
   }
 
-  state = {
-    custName: '',
-    custEmail: '',
-    custPhone: '',
-    compName: '',
-    custAddress: '',
-    customerData: [],
-    custNameError: '',
-    custEmailError: '',
-    custPhoneError: '',
-    compNameError: '',
-    custAddressError: '',
-  };
+
 
   validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -108,9 +107,21 @@ class AddCustomer extends Component {
             custAddress: this.state.custAddress,
           };
           localStorage.setItem('customerData', JSON.stringify([...this.state.customerData, newCustomer]));
+          // After adding a new customer, show success message
+          this.setState({
+            successMessage: 'Customer added successfully!',
+          });
 
-       
+          // Clear the success message after 3 seconds
+          setTimeout(() => {
+            this.setState({
+              successMessage: '',
+            });
+          }, 3000);
+
+
         }
+
       }
     );
   };
@@ -137,15 +148,11 @@ class AddCustomer extends Component {
                     <img src={CubeImg} alt="3d-cube" class="position-absolute top-0 end-1 w-25 max-width-200 mt-n6 d-sm-block d-none" />
                   </div>
                 </div>
-                {
-                  this.state.successMessage ?
-                    <div className={this.state.bgColor} role="alert">
-                      {this.state.successMessage}
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    :
-                    null
-                }
+                {this.state.successMessage && (
+                  <div className="alert alert-success" role="alert">
+                    {this.state.successMessage}
+                  </div>
+                )}
               </div>
             </div>
 

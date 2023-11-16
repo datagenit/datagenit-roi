@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
 import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
 import Footer from '../../Component/footer/Footer';
@@ -6,6 +6,16 @@ import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
 
 const ListStore = () => {
+  const [storeData, setStoreData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from localStorage
+    const storedData = JSON.parse(localStorage.getItem('storeData')) || [];
+    setStoreData(storedData);
+  }, []);
+
+  const removeNode = (index) => document.getElementById(`id-${index}`).remove();
+
   return (
     <div>
 
@@ -32,31 +42,6 @@ const ListStore = () => {
           <div class="row">
             <div class="col-12">
               <div class="card border shadow-xs mb-4">
-                <div class="card-header border-bottom pb-0">
-                  <div class="d-sm-flex align-items-center mb-3">
-                    <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                      <div class="dataTable-top">
-                        <div class="dataTable-dropdown"><label>
-                          <select class="dataTable-selector">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="25">25</option>
-                          </select> entries per page</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="ms-auto d-flex">
-                      <div class="input-group input-group-sm ms-auto me-2">
-                        <span class="input-group-text text-body">
-
-                        </span>
-                        <input type="text" class="form-control form-control-sm" placeholder="Search" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="table-responsive p-0">
                   <table class="table align-items-center mb-0">
@@ -64,62 +49,28 @@ const ListStore = () => {
                       <tr>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">S.No.</th>
                         <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Store Name</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Coupon Id</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Deliver</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Failed</th>
-                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Date</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Phone No</th>
+                        <th class="text-left text-secondary text-xs font-weight-semibold opacity-7">Email Id</th>
                         <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
-                        <td class="text-center align-middle">
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
-                            <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                          </a>
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
-                            <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
-                        <td class="text-center align-middle">
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
-                            <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                          </a>
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
-                            <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">Store1</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">(1,2,3)</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">1000</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">200</p></td>
-                        <td><p class="text-sm text-dark font-weight-semibold mb-0">20-8-2023</p></td>
-                        <td class="text-center align-middle">
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
-                            <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                          </a>
-                          <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
-                            <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                      </tr>
+                      {storeData.map((store, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{store.storeName}</td>
+                          <td>{store.storeContact}</td>
+                          <td>{store.storeEmail}</td>
+                          <td class="text-center align-middle">
+                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
+                              <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
+                            </a>
+                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete" onClick={() => removeNode(index)}>
+                              <i class="fas fa-trash text-dark" aria-hidden="true"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
 
                     </tbody>
                   </table>

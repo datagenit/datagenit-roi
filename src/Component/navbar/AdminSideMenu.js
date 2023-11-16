@@ -85,7 +85,7 @@ const AdminSideMenu = () => {
             <div class="collapse" id="navexample1">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
-                  <Link className="nav-links text-white" to="/admin/list-store">
+                  <Link className="nav-links text-white" to="/dashboard/list-store">
                     <span class="sidenav-normal"><FontAwesomeIcon icon={faList} /> List Store</span>
                   </Link>
                 </li>
@@ -94,13 +94,13 @@ const AdminSideMenu = () => {
           </li>
 
           <li class="nav-item">
-            <a data-bs-toggle="collapse" href="#navexample" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample" role="button" aria-expanded="false">
+            <a data-bs-toggle="collapse" href="#navexample2" class="nav-link text-white opacity-10 collapsed" aria-controls="navexample2" role="button" aria-expanded="false">
               <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
               </div>
               <span class="nav-link-text ms-1"><FontAwesomeIcon icon={faCalendar} /> Event</span>
             </a>
-            <div class="collapse" id="navexample">
+            <div class="collapse" id="navexample2">
               <ul class="nav border-start ms-4">
                 <li class="nav-item active">
                   <Link className="nav-links text-white" to="/admin/list-event">

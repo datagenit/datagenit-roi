@@ -1,16 +1,16 @@
 import React from 'react';
-import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
-import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
+import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
+import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
 import Footer from '../../Component/footer/Footer';
 import { userid, token, name, type } from '../common/UserAuth';
 
 const Index = () => {
   return (
     <div>
-      <AdminSideMenu />
+      <DashboardSideMenu />
       <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-        <AdminTopMenu />
+        <DashboardTopMenu />
         <div class="container-fluid py-4 px-5">
           <div class="row">
             <div class="col-md-12">
