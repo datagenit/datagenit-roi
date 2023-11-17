@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
 import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
 import Footer from '../../Component/footer/Footer';
@@ -11,10 +13,16 @@ const ListStore = () => {
   useEffect(() => {
     // Fetch data from localStorage
     const storedData = JSON.parse(localStorage.getItem('storeData')) || [];
+    console.log("Stored Data:", storedData); // Log stored data for inspection
     setStoreData(storedData);
   }, []);
 
-  const removeNode = (index) => document.getElementById(`id-${index}`).remove();
+
+
+
+
+
+
 
   return (
     <div>
@@ -56,16 +64,16 @@ const ListStore = () => {
                     </thead>
                     <tbody>
                       {storeData.map((store, index) => (
-                        <tr key={index}>
+                        <tr key={store.storeid}>
                           <td>{index + 1}</td>
                           <td>{store.storeName}</td>
                           <td>{store.storeContact}</td>
                           <td>{store.storeEmail}</td>
                           <td class="text-center align-middle">
-                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
+                            <Link to={`/dashboard/edit-store/:storeid`} class="mx-2">
                               <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                            </a>
-                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete" onClick={() => removeNode(index)}>
+                            </Link>
+                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
                               <i class="fas fa-trash text-dark" aria-hidden="true"></i>
                             </a>
                           </td>

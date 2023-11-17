@@ -3,6 +3,7 @@ import Index from "./Component/dashboard/Index";
 import ListEvent from "./Component/admin/ListEvent";
 import AddStore from "./Component/dashboard/AddStore";
 import ListStore from "./Component/dashboard/ListStore";
+import EditStore from "./Component/dashboard/EditStore";
 import AddCustomer from "./Component/admin/AddCustomer";
 import ListCustomer from "./Component/admin/ListCustomer";
 import EditCustomer from "./Component/admin/EditCustomer";
@@ -22,10 +23,11 @@ function App() {
         <Route path="/dashboard" element={<Index />} />
         <Route path="/admin/list-event" element={<ListEvent />} />
         <Route path="/dashboard/add-store" element={<AddStore />} />
+        <Route path="/dashboard/edit-store/:storeid" element={<EditStore />} />
         <Route path="/dashboard/list-store" element={<ListStore />} />
         <Route path="/admin/add-customer" element={<AddCustomer />} />
         <Route path="/admin/list-customer" element={<ListCustomer />} />
-        <Route path="/admin/edit-customer/:id" element={<EditCustomer />} />
+        <Route path="/admin/edit-customer/:custid" element={<EditCustomer />} />
         <Route path="/" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/admin" element={<Admin />} />

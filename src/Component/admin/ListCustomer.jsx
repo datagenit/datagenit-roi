@@ -1,5 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
 import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
 import Footer from '../../Component/footer/Footer';
@@ -9,12 +11,48 @@ import CubeImg from '../../assets/img/3d-cube.png';
 const ListCustomer = () => {
 
   const [customerData, setCustomerData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [customerToDelete, setCustomerToDelete] = useState(null);
 
   useEffect(() => {
     // Fetch data from localStorage
     const storedData = JSON.parse(localStorage.getItem('customerData')) || [];
+    console.log("Stored Data:", storedData); // Log stored data for inspection
+
+
+    // Check each customer object for its properties, including the 'id'
+    // storedData.forEach((customer) => {
+    //console.log("Customer ID:", customer.custid); // Log the ID of each customer
+    // You can log other properties as well to ensure their existence and values
+    // console.log("Customer Object:", customer);
+    // });
+
     setCustomerData(storedData);
   }, []);
+
+
+  const handleDelete = (customerId) => {
+    setCustomerToDelete(customerId);
+    setShowModal(true);
+  };
+
+  const deleteCustomer = (customerId) => {
+    console.log('Deleting customer with ID:', customerId);
+    const updatedCustomers = customerData.filter((customer) => customer.custid !== Number(customerId));
+    console.log('Updated Customers:', updatedCustomers); // Check the updated customer list
+    setCustomerData(updatedCustomers);
+    localStorage.setItem('customerData', JSON.stringify(updatedCustomers));
+  };
+
+  const confirmDelete = () => {
+    if (customerToDelete) {
+      console.log('Confirmed delete for ID:', customerToDelete);
+      deleteCustomer(customerToDelete);
+      setCustomerToDelete(null);
+      setShowModal(false);
+    }
+  };
+
 
   return (
     <div>
@@ -61,25 +99,42 @@ const ListCustomer = () => {
                     </thead>
                     <tbody>
                       {customerData.map((customer, index) => (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
+                        <tr key={customer.custid}>
+                          <td>{customer.custid}</td>
                           <td>{customer.custName}</td>
                           <td>{customer.custEmail}</td>
                           <td>{customer.custPhone}</td>
                           <td>{customer.compName}</td>
                           <td>{customer.custAddress}</td>
                           <td class="text-center align-middle">
-                            <a href={`/admin/edit-customer/${index}`} class="mx-2" data-bs-toggle="tooltip" data-bs-title="Edit">
+                            <Link to={`/admin/edit-customer/${customer.custid}`} class="mx-2">
                               <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
-                            </a>
-                            <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
+                            </Link>
+                            <Link onClick={() => handleDelete(customer.custid)} class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete" data-bs-toggle="tooltip" data-bs-title="Edit">
                               <i class="fas fa-trash text-dark" aria-hidden="true"></i>
-                            </a>
+                            </Link>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                  {/* Delete Confirmation Modal */}
+                  <Modal show={showModal} onHide={() => setShowModal(false)}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Confirm Delete</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      Are you sure you want to delete this customer?
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Close
+                      </Button>
+                      <Button variant="primary" onClick={confirmDelete}>
+                        Delete
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
                 </div>
                 <div class="border-top py-3 px-3 d-flex align-items-center">
                   <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Previous</button>

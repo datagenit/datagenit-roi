@@ -1,56 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import AdminSideMenu from '../../Component/navbar/AdminSideMenu';
-import AdminTopMenu from '../../Component/navbar/AdminTopMenu';
+import DashboardSideMenu from '../../Component/navbar/DashboardSideMenu';
+import DashboardTopMenu from '../../Component/navbar/DashboardTopMenu';
 import Footer from '../../Component/footer/Footer';
 import HeaderImg from '../../assets/img/header-blue-purple.jpg';
 import CubeImg from '../../assets/img/3d-cube.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faPhone, faMap, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faStore } from '@fortawesome/free-solid-svg-icons'
 
-const EditCustomer = () => {
-  const { custid } = useParams(); // Get the ID from the URL params
-  console.log('ID from URL:', custid); // Log the ID obtained from the URL params
+const EditStore = () => {
+  const { storeid } = useParams(); // Get the ID from the URL params
+  console.log('ID from URL:', storeid); // Log the ID obtained from the URL params
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState('');
-  const [customer, setCustomer] = useState({
-    custid: '',
-    custName: '',
-    custEmail: '',
-    custPhone: '',
-    compName: '',
-    custAddress: '',
+  const [store, setStore] = useState({
+    storeid: '',
+    storeName: '',
+    storeContact: '',
+    storeEmail: '',
   });
 
 
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('customerData')) || [];
+    const storedData = JSON.parse(localStorage.getItem('storeData')) || [];
 
-    console.log('Initial Customer State:', storedData);
+    console.log('Initial storeData State:', storedData);
 
-    const foundCustomer = storedData.find(c => c.custid === Number(custid)); // Ensure types match
-    if (foundCustomer) {
-      setCustomer(foundCustomer);
-      console.log('Found Customer:', foundCustomer);
+    const foundStore = storedData.find(c => c.storeid === Number(storeid)); // Ensure types match
+    if (foundStore) {
+      setStore(foundStore);
+      console.log('Found Customer:', foundStore);
     } else {
       console.log('Customer not found');
     }
-  }, [custid]);
+  }, [storeid]);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    setCustomer({ ...customer, [name]: value });
+    setStore({ ...store, [name]: value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     // Assuming 'customer' contains the updated customer data
     // Update the local storage data
-    const storedData = JSON.parse(localStorage.getItem('customerData')) || [];
+    const storedData = JSON.parse(localStorage.getItem('storeData')) || [];
     const updatedData = storedData.map(item => {
-      if (item.custid === Number(custid)) {
-        return { ...item, ...customer };
+      if (item.storeid === Number(storeid)) {
+        return { ...item, ...store };
       }
       return item;
     });
@@ -63,11 +61,11 @@ const EditCustomer = () => {
   };
   return (
     <div>
-      <AdminSideMenu />
+      <DashboardSideMenu />
 
       <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
-        <AdminTopMenu />
+        <DashboardTopMenu />
         <div class="container-fluid py-4 px-5">
           <div class="row">
             <div class="col-12">
@@ -91,75 +89,49 @@ const EditCustomer = () => {
                 <div class="card-header border-bottom pb-0">
                   <div class="d-sm-flex align-items-center mb-3">
                     <div>
-                      <h6 class="font-weight-semibold text-lg mb-0">Customer Form</h6>
+                      <h6 class="font-weight-semibold text-lg mb-0">Store Form</h6>
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
                   <form onSubmit={handleSubmit}>
                     <div class="row">
-                      <div class="col-lg-6 mb-2 mt-2">
-                        <div class="input-group">
+                      <div class="col-12">
+                        <div class="input-group mb-2 mt-2">
                           <span class="input-group-text text-body">
-                            <FontAwesomeIcon icon={faUser} />
+                            <FontAwesomeIcon icon={faStore} />
                           </span>
                           <input
                             type="text"
-                            name="custName"
-                            value={customer.custName}
+                            name="storeName"
+                            value={store.storeName}
                             onChange={handleInputChange} className="form-control" />
                         </div>
                       </div>
-                      <div class="col-lg-6 mb-2 mt-2">
-                        <div class="input-group">
-                          <span class="input-group-text text-body">
-                            <FontAwesomeIcon icon={faEnvelope} />
-                          </span>
-                          <input
-                            type="text"
-                            name="custEmail"
-                            value={customer.custEmail}
-                            onChange={handleInputChange} className="form-control"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="col-lg-6 mb-2 mt-2">
-                        <div class="input-group">
+                      <div class="col-6">
+                        <div class="input-group mb-2 mt-2">
                           <span class="input-group-text text-body">
                             <FontAwesomeIcon icon={faPhone} />
                           </span>
                           <input
                             type="text"
-                            name="custPhone"
-                            value={customer.custPhone}
+                            name="storeContact"
+                            value={store.storeContact}
                             onChange={handleInputChange} className="form-control"
                           />
                         </div>
                       </div>
-
-                      <div class="col-lg-6 mb-2 mt-2">
-                        <div class="input-group">
+                      <div class="col-6">
+                        <div class="input-group mb-2 mt-2">
                           <span class="input-group-text text-body">
-                            <FontAwesomeIcon icon={faBuilding} />
+                            <FontAwesomeIcon icon={faEnvelope} />
                           </span>
                           <input
                             type="text"
-                            name="compName"
-                            value={customer.compName}
-                            onChange={handleInputChange} class="form-control" placeholder="Company Name"
+                            name="storeEmail"
+                            value={store.storeEmail}
+                            onChange={handleInputChange} className="form-control"
                           />
-                        </div>
-                      </div>
-
-                      <div class="col-lg-12  mb-2 mt-2">
-                        <div class="input-group">
-                          <span class="input-group-text text-body">
-                            <FontAwesomeIcon icon={faMap} />
-                          </span>
-                          <textarea name="custAddress"
-                            value={customer.custAddress}
-                            onChange={handleInputChange} class="form-control" placeholder="Address"></textarea>
                         </div>
                       </div>
 
@@ -185,4 +157,4 @@ const EditCustomer = () => {
 }
 
 
-export default EditCustomer;
+export default EditStore;

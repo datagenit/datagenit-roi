@@ -13,20 +13,15 @@ class AddStore extends Component {
 
     super();
     this.state = {
-      // ... existing state
+      storeName: '',
+      storeContact: '',
+      storeEmail: '',
+      successMessage: false,
+      storeNameError: '',
+      storeContactError: '',
+      storeEmailError: '',
       storeData: JSON.parse(localStorage.getItem('storeData')) || [],
     };
-  }
-
-  state = {
-    storeName: '',
-    storeContact: '',
-    storeEmail: '',
-    successMessage: false,
-    storeData: [],
-    storeNameError: '',
-    storeContactError: '',
-    storeEmailError: '',
   }
 
   validateEmail(email) {
@@ -83,6 +78,7 @@ class AddStore extends Component {
 
         if (valid) {
           const newStore = {
+            storeid: this.state.storeData.length + 1, // Generate unique ID
             storeName: this.state.storeName,
             storeContact: this.state.storeContact,
             storeEmail: this.state.storeEmail,

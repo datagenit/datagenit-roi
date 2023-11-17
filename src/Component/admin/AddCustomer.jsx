@@ -25,7 +25,6 @@ class AddCustomer extends Component {
       custAddressError: '',
       customerData: JSON.parse(localStorage.getItem('customerData')) || [],
     };
-
   }
 
 
@@ -100,6 +99,7 @@ class AddCustomer extends Component {
 
         if (valid) {
           const newCustomer = {
+            custid: this.state.customerData.length + 1, // Generate unique ID
             custName: this.state.custName,
             custEmail: this.state.custEmail,
             custPhone: this.state.custPhone,
