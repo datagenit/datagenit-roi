@@ -53,11 +53,11 @@ const EditStore = () => {
       return item;
     });
 
-    localStorage.setItem('customerData', JSON.stringify(updatedData));
+    localStorage.setItem('StoreData', JSON.stringify(updatedData));
     setSuccessMessage('Form submitted successfully!');
 
     // Redirect to the customer list or any other route
-    navigate('/admin/list-customer');
+    navigate('/dashboard/list-store');
   };
   return (
     <div>

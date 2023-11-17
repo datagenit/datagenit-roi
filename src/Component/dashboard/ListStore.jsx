@@ -70,7 +70,7 @@ const ListStore = () => {
                           <td>{store.storeContact}</td>
                           <td>{store.storeEmail}</td>
                           <td class="text-center align-middle">
-                            <Link to={`/dashboard/edit-store/:storeid`} class="mx-2">
+                            <Link to={`/dashboard/edit-store/${store.storeid}`} class="mx-2">
                               <i class="fas fa-user-edit text-dark" aria-hidden="true"></i>
                             </Link>
                             <a href="javascript:;" class="mx-2" data-bs-toggle="tooltip" data-bs-title="Delete">
